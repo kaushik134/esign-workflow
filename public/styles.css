@@ -1,0 +1,393 @@
+/* Modern CSS Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 2rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+}
+
+h2 {
+    color: #34495e;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin: 1.5rem 0 1rem;
+}
+
+/* Section Styling */
+.section {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: transform 0.2s ease;
+}
+
+.section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.step-indicator {
+    background: #3498db;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Upload Area */
+.upload-container {
+    margin: 2rem 0;
+}
+
+.file-upload-area {
+    border: 2px dashed #3498db;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    background: #f8fafc;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.file-upload-area:hover, .file-upload-area.dragover {
+    background: #f0f7ff;
+    border-color: #2980b9;
+}
+
+.file-upload-area i {
+    font-size: 3rem;
+    color: #3498db;
+    margin-bottom: 1rem;
+}
+
+.upload-button {
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.upload-button:hover {
+    background: #2980b9;
+}
+
+.file-name {
+    color: #7f8c8d;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* Preview Area */
+.preview-container {
+    margin: 2rem 0;
+}
+
+.preview-area {
+    width: 100%;
+    border: 1px solid #e1e8ed;
+    border-radius: 8px;
+    background: #f0f2f5; /* Light gray background */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative; /* Crucial for positioning overlays */
+    min-height: 400px;
+    max-height: 70vh; /* Max 70% of the viewport height */
+    overflow: auto;  /* Enable scrolling if content (canvas) is larger */
+    display: flex;
+    justify-content: center; /* Center the PDF page horizontally */
+    align-items: flex-start; /* Align PDF to the top */
+    padding-top: 1rem; /* Add some space at the top */
+    padding-bottom: 1rem; /* Add some space at the bottom */
+}
+
+.preview-area canvas {
+    display: block; /* Removes bottom margin/space */
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* A more pronounced shadow for the page */
+}
+
+.preview-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    color: #95a5a6;
+}
+
+.preview-placeholder i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+/* Form Elements */
+.form-group {
+    margin: 2rem 0;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.input-group-row label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.input-group-row input {
+    max-width: 100px;
+}
+
+label {
+    display: block;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+label i {
+    margin-right: 0.5rem;
+    color: #3498db;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Button Styling */
+.button-group {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.primary-button, .secondary-button, .danger-button {
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.primary-button {
+    background-color: #3498db;
+    color: white;
+}
+
+.primary-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+}
+
+.primary-button:active {
+    transform: translateY(1px);
+}
+
+.secondary-button {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.secondary-button:hover {
+    background-color: #e0e0e0;
+}
+
+.secondary-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.danger-button {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.danger-button:hover {
+    background-color: #c0392b;
+}
+
+/* Status Messages */
+.status-message {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    color: #2c3e50;
+}
+
+/* Toast Notifications */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.toast {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 1rem 1.5rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+}
+
+.toast i {
+    font-size: 1.2rem;
+}
+
+.toast.info { border-left: 4px solid #3498db; }
+.toast.error { border-left: 4px solid #e74c3c; }
+.toast.success { border-left: 4px solid #2ecc71; }
+.toast.warning { border-left: 4px solid #f1c40f; }
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.toast {
+    animation: slideIn 0.5s forwards;
+}
+
+/* Signature Overlay */
+.signature-overlay {
+    position: absolute;
+    border: 2px dashed #3498db; /* Default border, will be overridden by role-specific */
+    background-color: rgba(52, 152, 219, 0.1); /* Default background, will be overridden */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #2c3e50;
+    cursor: grab;
+    user-select: none; /* Prevent text selection during drag */
+    z-index: 10;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.signature-overlay.role2 {
+    border: 2px dashed #e74c3c; /* Red border for Role 2 */
+    background-color: rgba(231, 76, 60, 0.1); /* Light red background */
+}
+
+.signature-overlay.role3 {
+    border: 2px dashed #3498db; /* Blue border for Role 3 */
+    background-color: rgba(52, 152, 219, 0.1); /* Light blue background */
+}
+
+.signature-overlay:active {
+    cursor: grabbing;
+}
+
+.resize-handle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #3498db;
+    border: 1px solid white;
+    border-radius: 50%;
+    z-index: 11; /* Above the overlay */
+}
+
+.resize-handle.top-left { top: -5px; left: -5px; cursor: nwse-resize; }
+.resize-handle.top-right { top: -5px; right: -5px; cursor: nesw-resize; }
+.resize-handle.bottom-left { bottom: -5px; left: -5px; cursor: nesw-resize; }
+.resize-handle.bottom-right { bottom: -5px; right: -5px; cursor: nwse-resize; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body { padding: 1rem; }
+    .section { padding: 1.5rem; }
+    h1 { font-size: 2rem; }
+    .section-header { flex-direction: column; gap: 1rem; text-align: center; }
+    .step-indicator { align-self: center; }
+    .input-group-row { flex-direction: column; align-items: flex-start; }
+}

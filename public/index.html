@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eSign Workflow - Sequential Signing</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Add Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1><i class="fas fa-file-signature"></i> eSign Workflow</h1>
+      <p class="subtitle">Sequential Document Signing Process</p>
+    </header>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Role 1 Section: Initiate Workflow -->
+    <div class="section" id="role1Section">
+      <div class="section-header">
+        <h2><i class="fas fa-user-tie"></i> Role 1: Initiating Workflow</h2>
+        <div class="step-indicator">Step 1 of 3</div>
+      </div>
+
+      <div class="upload-container">
+        <div class="file-upload-area" id="dropZone">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <p>Drag & Drop PDF here or</p>
+          <label for="role1PdfFile" class="upload-button">Choose File</label>
+          <input type="file" id="role1PdfFile" accept="application/pdf" hidden>
+          <p class="file-name" id="fileName">No file chosen</p>
+        </div>
+      </div>
+
+      <div class="preview-container">
+        <h3>Document Preview</h3>
+        <div id="role1Preview" class="preview-area" style="position:relative;">
+          <!-- Canvas will be inserted here by JavaScript -->
+          <div class="preview-placeholder">
+            <i class="fas fa-file-pdf"></i>
+            <p>Upload a PDF to preview</p>
+          </div>
+        </div>
+        <div id="pdfNav" class="pdf-navigation" style="text-align: center; margin-top: 1rem; display: none;">
+          <button id="prevPageBtn" class="secondary-button"><i class="fas fa-chevron-left"></i> Previous</button>
+          <span>Page <span id="currentPage">1</span> / <span id="totalPages">1</span></span>
+          <button id="nextPageBtn" class="secondary-button">Next <i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <h3>Role 1 Details</h3>
+        <div class="input-group">
+          <label for="role1Name">
+            <i class="fas fa-user"></i> Your Name
+          </label>
+          <input type="text" id="role1Name" placeholder="Enter your name" value="HR">
+        </div>
+        <div class="input-group">
+          <label for="role1Email">
+            <i class="fas fa-envelope"></i> Your Email
+          </label>
+          <input type="email" id="role1Email" placeholder="Enter your email" value="hr@example.com">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <h3>Phase 1: Add Sign Tags</h3>
+        <div class="input-group">
+          <label for="role2Name">
+            <i class="fas fa-user"></i> Role 2 Name
+          </label>
+          <input type="text" id="role2Name" placeholder="Enter Role 2 name" value="Alice">
+        </div>
+        <div class="input-group">
+          <label for="role2Email">
+            <i class="fas fa-envelope"></i> Role 2 Email
+          </label>
+          <input type="email" id="role2Email" placeholder="Enter Role 2 email" value="alice@example.com">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <h3>Signature Box for Role 2</h3>
+        <div class="input-group-row">
+          <label>X: <input type="number" id="r2-widgetX" class="coord-input" data-role="r2" data-prop="x" step="0.1" value="35.12"></label>
+          <label>Y: <input type="number" id="r2-widgetY" class="coord-input" data-role="r2" data-prop="y" step="0.1" value="449.20"></label>
+          <label>Width: <input type="number" id="r2-widgetW" class="coord-input" data-role="r2" data-prop="w" step="0.1" value="150"></label>
+          <label>Height: <input type="number" id="r2-widgetH" class="coord-input" data-role="r2" data-prop="h" step="0.1" value="60"></label>
+          <label>Page: <input type="number" id="r2-widgetPage" class="coord-input" data-role="r2" data-prop="page" min="1" value="1"></label>
+        </div>
+        <div class="button-group">
+          <button id="addR2SignatureBtn" class="secondary-button"><i class="fas fa-plus"></i> Add Signature Box</button>
+          <button id="removeR2SignatureBtn" class="danger-button" style="display: none;"><i class="fas fa-trash"></i> Remove</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <h3>Signature Box for Role 3</h3>
+        <div class="input-group-row">
+          <label>X: <input type="number" id="r3-widgetX" class="coord-input" data-role="r3" data-prop="x" step="0.1" value="383.51"></label>
+          <label>Y: <input type="number" id="r3-widgetY" class="coord-input" data-role="r3" data-prop="y" step="0.1" value="449.66"></label>
+          <label>Width: <input type="number" id="r3-widgetW" class="coord-input" data-role="r3" data-prop="w" step="0.1" value="145.32"></label>
+          <label>Height: <input type="number" id="r3-widgetH" class="coord-input" data-role="r3" data-prop="h" step="0.1" value="58.13"></label>
+          <label>Page: <input type="number" id="r3-widgetPage" class="coord-input" data-role="r3" data-prop="page" min="1" value="1"></label>
+        </div>
+        <div class="button-group">
+          <button id="addR3SignatureBtn" class="secondary-button"><i class="fas fa-plus"></i> Add Signature Box</button>
+          <button id="removeR3SignatureBtn" class="danger-button" style="display: none;"><i class="fas fa-trash"></i> Remove</button>
+        </div>
+      </div>
+
+      <button id="initiateBtn" class="primary-button">
+        <i class="fas fa-play"></i> Initiate Workflow
+      </button>
+      <div id="initiateStatus" class="status-message"></div>
+    </div>
+
+    <!-- Role 2 Section -->
+    <div class="section" id="role2Section">
+      <div class="section-header">
+        <h2><i class="fas fa-user-check"></i> Phase 2: Role 2 Review & Sign</h2>
+        <div class="step-indicator">Step 2 of 3</div>
+      </div>
+
+      <input type="text" hidden value="" id="templateId">
+      <input type="text" hidden value="Role3" id="forRole">
+
+      <div class="form-group">
+        <h3>Role 3 Details</h3>
+        <div class="input-group">
+          <label for="role3Name">
+            <i class="fas fa-user"></i> Role 3 Name
+          </label>
+          <input type="text" id="role3Name" placeholder="Enter Role 3 Name" value="Bob">
+        </div>
+        <div class="input-group">
+          <label for="role3Email">
+            <i class="fas fa-envelope"></i> Role 3 Email
+          </label>
+          <input type="email" id="role3Email" placeholder="Enter Role 3 Email" value="bob@example.com">
+        </div>
+        <div class="input-group">
+          <label for="role3Phone">
+            <i class="fas fa-phone"></i> Role 3 Phone
+          </label>
+          <input type="tel" id="role3Phone" placeholder="Enter Role 3 Phone">
+        </div>
+      </div>
+
+      <button id="role2SignBtn" class="primary-button">
+        <i class="fas fa-signature"></i> Submit Role 3 and Sign
+      </button>
+      <div id="role2Status" class="status-message"></div>
+    </div>
+
+    <!-- Role 3 Section -->
+    <div class="section" id="role3Section">
+      <div class="section-header">
+        <h2><i class="fas fa-check-double"></i> Phase 3: Final Signing</h2>
+        <div class="step-indicator">Step 3 of 3</div>
+      </div>
+      <div class="status-container">
+        <p id="documentIdRole3" class="status-message">Waiting for Document to be Prepared by Role 2</p>
+        <div id="role3Status" class="status-message"></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.worker.min.js';
+</script>
+<script src="main.js"></script>
+
+</html>
