@@ -10,7 +10,8 @@ import { EsignModule } from './esign/esign.module';
   imports: [
     // Serve static files from the "public" directory
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'),
+      rootPath: join(__dirname, '..', '..', 'dist', 'public'),
+      serveRoot: '/',
     }),
     EsignModule,
     ConfigModule.forRoot({
