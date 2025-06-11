@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "build": "npm install && npm install -g @nestjs/cli && nest build && if not exist dist\\public mkdir dist\\public && xcopy /E /I /Y public\\* dist\\public\\",
+    "build": "npm install && npm install -g @nestjs/cli && nest build && mkdir -p dist/public && cp -r public/* dist/public/",
     "start": "npm run build && node dist/src/main",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
